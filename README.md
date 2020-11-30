@@ -1,2 +1,2 @@
 # SimpleQuantum
-Leaning about qubits and gates.
+Leaning about qubits, registers, and gates. So far, I've just implemented `Qubit`s.
