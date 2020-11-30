@@ -1,7 +1,7 @@
 module SimpleQuantum
 using LinearAlgebra
 
-import Base.show
+import Base: show, ==
 
 
 export Qubit, Q0, Q1, normalize!, measure!
@@ -30,6 +30,8 @@ mutable struct Qubit
     new(v)
   end
 end
+
+(==)(q1::Qubit, q2::Qubit) = q1.vec == q2.vec
 
 _norm(q::Qubit)::RR = _norm(q.vec)
 
