@@ -1,2 +1,2 @@
-# SimpleQuantum.jl
+# SimpleQuantum
 Leaning about qubits and gates.
