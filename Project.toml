@@ -1,4 +1,6 @@
 name = "SimpleQuantum"
+uuid = "d0e7c95c-29d3-471f-80c8-4a9864973810"
+authors = ["Ed Scheinerman <ers@jhu.edu>"]
 version = "0.0.1"
 
 [deps]
