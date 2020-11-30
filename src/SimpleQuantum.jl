@@ -1,10 +1,11 @@
 module SimpleQuantum
 using LinearAlgebra
 
-import Base: show, ==
+import Base: show, ==, length, getindex, setindex!
 
 
-export Qubit, Q0, Q1, normalize!, measure!
+export Qubit, Q0, Q1, normalize!, measure!, Register
+
 export _norm # eventually, I won't export this
 
 RR = Float64            # shortcut for real
@@ -69,6 +70,8 @@ end
 `measure!(q::Qubit)` performs a quantum measurement on the qubit `q`
 returning `0` or `1` and overwriting `q` to be either `Q0` or `Q1`
 respectively.
+
+`measure(R::Register,k::Int)` measures the `k`-th qubit in `R`.
 """
 function measure!(q::Qubit)::Int
   p = abs(q.vec[2])
@@ -79,8 +82,58 @@ function measure!(q::Qubit)::Int
   else 
     q.vec = Q0.vec
   end
-
   return val
+end
+
+struct Register
+  qbits::Vector{Qubit}
+  function Register(nbits::Int=1)
+    if nbits <= 0
+      DomainError(nbits, "Number of qubits must be positive")
+    end
+    vec = Vector{Qubit}(undef,nbits)
+    for j=1:nbits
+      vec[j] = Q0
+    end 
+    new(vec)
+  end
+end
+
+"""
+`Register(n::Int=1)` returns a new register with `n` qubits all set to `Q0`.
+
+`Register(qlist::Qubit...)` returns a new register with the qubits specified 
+by the arguments.
+"""
+function Register(qbits::Qubit...)::Register
+  nbits = length(qbits)
+  R = Register(nbits)
+  for j=1:nbits
+    R[j] = qbits[j]
+  end
+  return R 
+end 
+
+
+getindex(R::Register,k::Int) = R.qbits[k]
+setindex!(R::Register, q::Qubit, k::Int) = R.qbits[k] = q
+
+
+measure!(R::Register,k::Int)::Int = measure!(R[k])
+
+"""
+`length(R::Register)` returns the number of qubits in 
+the register `R`.
+"""
+length(R::Register) = length(R.qbits)
+
+function show(io::IO,R::Register)
+  print(io,"Register(")
+  nbits = length(R)
+  for j=1:nbits-1
+    print(io,R[j],",")
+  end
+  print(io,R[nbits],")")
 end
 
 end  # end of module
