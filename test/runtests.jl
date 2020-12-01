@@ -21,6 +21,15 @@ end
 println("total = $total which should be around 640")
 
 
+total = 0
+for k=1:1000
+    local q = RandomQubit()
+    local v = measure!(q)
+    global total += v 
+end
+println("Generated 1000 random qubits and got $total ones")
+
+
 q = Qubit(3, 4im)
 w = q.vec[1]
 z = q.vec[2]

@@ -1,4 +1,4 @@
-export Qubit, Q0, Q1
+export Qubit, Q0, Q1, RandomQubit
 
 """
 A `Qubit` represents a single qubit. 
@@ -66,4 +66,13 @@ function measure!(q::Qubit)::Int
         q.vec = Q0.vec
     end
     return val
+end
+
+"""
+`RandomQubit()` returns a random qubit. 
+"""
+function RandomQubit()
+    a = randn() + randn()*im
+    b = randn() + randn()*im
+    return Qubit(a,b)
 end

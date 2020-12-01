@@ -33,6 +33,8 @@ julia> q==Q1
 true
 ```
 
+The function `RandomQubit()` creates a random qubit.
+
 The function `normalize!` is used internally to rescale a qubit so its
 vector is unit length. Although this function is exposed to the user,
 it is unlikely to ever be needed.
@@ -43,9 +45,18 @@ A *register* is the state of a collection of qubits. The function `Register(n::I
 a new register to hold `n` qubits. It is a wrapper around a complex vector of length `2^n`. 
 The initial state is that all the qubits are equal to `Q0`.
 
-Meager start here!
+A new register may be created by giving a list of qubits as arguments, or a vector of qubits.
+```julia
+julia> R = Register(Q1,Q1,Q0);
+
+julia> Qvec = [Q1,Q1,Q0];
+
+julia> S = Register(Qvec);  # holds same data as R
+```
+
+More to come (e.g., implement `measure!`).
 
 
 ## Gates
 
-Nothing yet!
+Nothing yet.

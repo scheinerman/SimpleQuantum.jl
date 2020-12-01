@@ -3,6 +3,9 @@ export Register
 """
 `Register(n::Int=1)` creates a new quantum register holding `n`
 qubits, all set to `Q0`.
+
+`Register(q1,q2,...)` or `Register([q1,q2,...])` creates a new quantum
+register holding the qubits `q1`, `q2`, etc.
 """
 struct Register
     vec::Vector{CC}
@@ -14,9 +17,25 @@ struct Register
         v[1] = one(CC)
         new(v)
     end
+
+    function Register(v::Vector{CC})
+        new(v)
+    end
 end
 
 
+function Register(Qlist::Qubit...)
+    v = Qlist[1].vec
+    for j = 2:length(Qlist)
+        v = kron(v, Qlist[j].vec)
+    end
+    return Register(v)
+end
+
+function Register(QQ::Vector{Qubit})
+    Qtuple = Tuple(q for q in QQ)
+    return Register(Qtuple...)
+end
 
 # All this is WRONG!!!  (Old code to be removed.)
 # struct Register

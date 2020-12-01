@@ -1,7 +1,7 @@
 module SimpleQuantum
 using LinearAlgebra
 
-import Base: show, ==, length
+import Base: show, ==, length, kron
 
 
 export normalize!, measure!
