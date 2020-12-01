@@ -1,5 +1,5 @@
 module SimpleQuantum
-using LinearAlgebra
+using LinearAlgebra, SparseArrays
 
 import Base: show, ==, length, kron
 
@@ -15,6 +15,10 @@ CC = Complex{RR}        # shortcut for complex
 function _norm(v::Vector)::RR
     real(sqrt(v' * v))
 end
+
+⊗(A) = A
+⊗(A,B) = kron(A,B)
+⊗(A,B,C...) = ⊗(A,⊗(B,C...))
 
 
 include("qubit.jl")
