@@ -43,9 +43,9 @@ A *register* is the state of a collection of qubits. The function `Register(n::I
 a new register to hold `n` qubits. It is a wrapper around a complex vector of length `2^n`. 
 The initial state is that all the qubits are equal to `Q0`.
 
-**TODO**: Implement `measure!`.
+Meager start here!
 
 
 ## Gates
 
-Not available yet!
+Nothing yet!
