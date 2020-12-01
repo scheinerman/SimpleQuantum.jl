@@ -14,7 +14,7 @@ respectively.
 More generally, `Qubit(w,z)` where `w` and `z` are numbers (not both zero)
 creates a new qubit whose unit vector representation is `[w;z]` normalized.
 
-The `measure!` function is used to value of the qubit. If `q` is the qubit
+The `measure!` function is used to get the collapsed value of the qubit. If `q` is the qubit
 specified by `[w;z]` with `abs(w)^2 + abs(z)^2 == 1`, then `measure!(q)` 
 returns `0` with probability `abs(w)^2` and `1` with probability `abs(z)^2`, 
 and overwrites the value of `q` with `Q0` or `Q1`, respectively.
