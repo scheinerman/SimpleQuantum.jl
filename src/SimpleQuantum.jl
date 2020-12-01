@@ -4,7 +4,7 @@ using LinearAlgebra, SparseArrays
 import Base: show, ==, length, kron
 
 
-export normalize!, measure!
+export normalize!, measure!, (⊗)
 
 export _norm # eventually, I won't export this
 
@@ -16,6 +16,10 @@ function _norm(v::Vector)::RR
     real(sqrt(v' * v))
 end
 
+
+"""
+`A⊗B` is the Kronecker (tensor) product of `A` and `B`.
+"""
 ⊗(A) = A
 ⊗(A,B) = kron(A,B)
 ⊗(A,B,C...) = ⊗(A,⊗(B,C...))
