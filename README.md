@@ -8,7 +8,7 @@ The basic unit of quantum computation is a *qubit* which is a unit
 vector in $C^2$. The function `Qubit()` returns a new qubit corresponding
 to a zero. 
 
-We the constants `Q0` and `Q1` representing zero and one, 
+We provide the constants `Q0` and `Q1` representing zero and one, 
 respectively.
 
 More generally, `Qubit(w,z)` where `w` and `z` are numbers (not both zero)
