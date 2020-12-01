@@ -2,6 +2,8 @@
 
 This is a demonstration project for quantum computation. 
 
+
+
 ## Qubits
 
 The basic unit of quantum computation is a *qubit* which is a unit
@@ -60,3 +62,9 @@ More to come (e.g., implement `measure!`).
 ## Gates
 
 Nothing yet.
+
+
+## Reference
+
+
+Giacomo Nannicini, An Introduction to Quantum Computing, without the Physics, *SIAM Review*, vol. 62, no. 4, pp. 936–981.
