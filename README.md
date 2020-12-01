@@ -39,38 +39,12 @@ it is unlikely to ever be needed.
 
 ## Registers
 
-A *register* is a list of qubits. The function `Register(n::Int)` creates
-a new register all of whose qubits are `Q0`. 
+A *register* is the state of a collection of qubits. The function `Register(n::Int)` creates
+a new register to hold `n` qubits. It is a wrapper around a complex vector of length `2^n`. 
+The initial state is that all the qubits are equal to `Q0`.
 
-A register can also be created by specifying the qubits as arguments to 
-the register.
-```julia
+**TODO**: Implement `measure!`.
 
-julia> R = Register(3)
-Register(Qubit(1.0 + 0.0im,0.0 + 0.0im),Qubit(1.0 + 0.0im,0.0 + 0.0im),Qubit(1.0 + 0.0im,0.0 + 0.0im))
-
-julia> R = Register(Q0,Q1,Q1)
-Register(Qubit(1.0 + 0.0im,0.0 + 0.0im),Qubit(0.0 + 0.0im,1.0 + 0.0im),Qubit(0.0 + 0.0im,1.0 + 0.0im))
-```
-
-Use `length(R)` to determine the number of qubits in the register, `R`.
-
-To measure a particular qubit in a register, use `measure!(R,k)`.
-
-Individual qubits can be inspected and set using `[]` notation, although this
-is not permitted in a quantum computation.
-```julia
-julia> R = Register(3);
-
-julia> R[1] = Qubit(3,4)
-Qubit(0.6 + 0.0im,0.8 + 0.0im)
-
-julia> measure!(R,1)
-0
-
-julia> R[1]
-Qubit(1.0 + 0.0im,0.0 + 0.0im)
-```
 
 ## Gates
 
