@@ -56,12 +56,27 @@ julia> Qvec = [Q1,Q1,Q0];
 julia> S = Register(Qvec);  # holds same data as R
 ```
 
+Use `length(R)` to determine the number of qubits in the register. Note that the number of 
+complex values in `R`'s vector is `2^n` where `n` is the number of qubits.
+
 More to come (e.g., implement `measure!`).
+
+
+## Quantum State
+
+The `QuantumState` type is the common supertype of `Qubit` and `Register`. Both of these
+types have a `vec` field that is a complex vector. Methods, such as `normalize!` act on 
+that vector. 
+
+The function `apply!(A,q::QuantumState)` applies the (presumably unitary) matrix `A` 
+to the state vector in `q`, overwriting that vector.
 
 
 ## Gates
 
 Nothing yet.
+
+
 
 
 ## Reference
