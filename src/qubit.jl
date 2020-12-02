@@ -6,7 +6,7 @@ A `Qubit` represents a single qubit.
 * `Qubit()` creates the `|0>` value; equivalent to `Qubit(1,0)`. See also `Q0` and `Q1`.
 * `Qubit(w::Complex,z::Complex)` creates a qubit whose state is `[w;z]` (normalized)
 """
-mutable struct Qubit
+mutable struct Qubit <: QuantumState
     vec::Vector{CC}
     function Qubit(w, z)
         v = [w; z]
@@ -15,9 +15,6 @@ mutable struct Qubit
     end
 end
 
-(==)(q1::Qubit, q2::Qubit) = q1.vec == q2.vec
-
-_norm(q::Qubit)::RR = _norm(q.vec)
 
 Qubit() = Qubit(1, 0)
 
@@ -32,14 +29,6 @@ const Q0 = Qubit(1, 0)
 const Q1 = Qubit(0, 1)
 
 
-"""
-The `normalize!` function is used to ensure that `Qubit`s 
-are unit vectors. Not likely to be used by users.
-"""
-function normalize!(q::Qubit)::Nothing
-    q.vec /= _norm(q)
-    nothing
-end
 
 
 function show(io::IO, q::Qubit)
@@ -72,7 +61,7 @@ end
 `RandomQubit()` returns a random qubit. 
 """
 function RandomQubit()
-    a = randn() + randn()*im
-    b = randn() + randn()*im
-    return Qubit(a,b)
+    a = randn() + randn() * im
+    b = randn() + randn() * im
+    return Qubit(a, b)
 end

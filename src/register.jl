@@ -1,4 +1,5 @@
 export Register
+import Base: length
 
 """
 `Register(n::Int=1)` creates a new quantum register holding `n`
@@ -7,26 +8,30 @@ qubits, all set to `Q0`.
 `Register(q1,q2,...)` or `Register([q1,q2,...])` creates a new quantum
 register holding the qubits `q1`, `q2`, etc.
 """
-struct Register
+mutable struct Register <: QuantumState
     vec::Vector{CC}
+    sz::Int
     function Register(nbits::Int = 1)
         if nbits <= 0
             throw(DomainError(nbits, "Number of bits must be positive."))
         end
         v = zeros(CC, 1 << nbits)
         v[1] = one(CC)
-        new(v)
+        new(v,nbits)
     end
 
-    function Register(v::Vector{CC})
-        new(v)
+    # This constructor generally should not be used the user.
+    function Register(v::Vector{T}) where T<:Number
+        nbits = Int(round(log(2,length(v))))
+        new(v,nbits)
     end
 end
 
 
 function Register(Qlist::Qubit...)
+    nbits = length(Qlist)
     v = Qlist[1].vec
-    for j = 2:length(Qlist)
+    for j = 2:nbits
         v = kron(v, Qlist[j].vec)
     end
     return Register(v)
@@ -37,54 +42,9 @@ function Register(QQ::Vector{Qubit})
     return Register(Qtuple...)
 end
 
-# All this is WRONG!!!  (Old code to be removed.)
-# struct Register
-#     qbits::Vector{Qubit}
-#     function Register(nbits::Int = 1)
-#         if nbits <= 0
-#             throw(DomainError(nbits, "Number of bits must be positive."))
-#         end
-#         vec = Vector{Qubit}(undef, nbits)
-#         for j = 1:nbits
-#             vec[j] = Q0
-#         end
-#         new(vec)
-#     end
-# end
-
-# """
-# `Register(n::Int=1)` returns a new register with `n` qubits all set to `Q0`.
-
-# `Register(qlist::Qubit...)` returns a new register with the qubits specified 
-# by the arguments.
-# """
-# function Register(qbits::Qubit...)::Register
-#     nbits = length(qbits)
-#     R = Register(nbits)
-#     for j = 1:nbits
-#         R[j] = qbits[j]
-#     end
-#     return R
-# end
-
-
-# getindex(R::Register, k::Int) = R.qbits[k]
-# setindex!(R::Register, q::Qubit, k::Int) = R.qbits[k] = q
-
-
-# measure!(R::Register, k::Int)::Int = measure!(R[k])
-
-# """
-# `length(R::Register)` returns the number of qubits in 
-# the register `R`.
-# """
-# length(R::Register) = length(R.qbits)
-
-# function show(io::IO, R::Register)
-#     print(io, "Register(")
-#     nbits = length(R)
-#     for j = 1:nbits-1
-#         print(io, R[j], ",")
-#     end
-#     print(io, R[nbits], ")")
-# end
+"""
+`length(R::Register)` is the number of qubits in `R`.
+(The number of complex numbers in its vector is `2^n` where `n`
+is the number of qubits.)
+"""
+length(R::Register)::Int = R.sz
