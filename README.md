@@ -124,7 +124,7 @@ julia> [1;2] ⊗ [3;4]
 ```
 
 ### Base-2 logarithm for powers of two
-We define `lg` as a base-2 logarithm for powers of two. 
+We define `lg` as the base-2 logarithm for powers of two. 
 It is faster than `Int(round(log(2,n)))`.
 ```julia
 julia> lg(1024)
