@@ -5,7 +5,7 @@ A `Qubit` represents a single qubit.
 
 * `Qubit()` creates the `|0>` value; equivalent to `Qubit(1,0)`. 
 * `Qubit(0)` and `Qubit(1)` create the `|0>` and `|1>` values, respecively. They are also
-available as `Q0` and `Q1`.
+  available as `Q0` and `Q1`.
 * `Qubit(w::Complex,z::Complex)` creates a qubit whose state is `[w;z]` (normalized)
 """
 mutable struct Qubit <: QuantumState
@@ -17,7 +17,7 @@ mutable struct Qubit <: QuantumState
     end
 end
 
-Qubit(b::Integer=0) = b==0 ? Qubit(1,0) : Qubit(0,1)
+Qubit(b::Integer = 0) = b == 0 ? Qubit(1, 0) : Qubit(0, 1)
 
 
 """
