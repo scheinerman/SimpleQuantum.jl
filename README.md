@@ -68,7 +68,7 @@ The `QuantumState` type is the common supertype of `Qubit` and `Register`. Both 
 types have a `vec` field that is a complex vector. Methods, such as `normalize!` act on 
 that vector. 
 
-The function `apply!(A,q::QuantumState)` applies the (presumably unitary) matrix `A` 
+The function `apply!(A,q)` applies the (presumably unitary) matrix `A` 
 to the state vector in `q`, overwriting that vector.
 
 
