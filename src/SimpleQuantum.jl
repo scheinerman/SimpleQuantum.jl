@@ -1,5 +1,5 @@
 module SimpleQuantum
-using LinearAlgebra, SparseArrays
+using LinearAlgebra, SparseArrays, SimpleRandom
 
 import Base: show, ==, length, kron
 
@@ -9,8 +9,6 @@ export measure!, (⊗)
 
 RR = Float64            # shortcut for real
 CC = Complex{RR}        # shortcut for complex
-
-
 
  
 """
@@ -31,7 +29,6 @@ function lg(n::Int)::Int
     end
     return count 
 end
-
 
 
 include("quantum_state.jl")

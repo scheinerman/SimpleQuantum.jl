@@ -57,19 +57,43 @@ A *register* is the state of a collection of qubits. The function `Register(n::I
 a new register to hold `n` qubits. It is a wrapper around a complex vector of length `2^n`. 
 The initial state is that all the qubits are equal to `Q0`.
 
-A new register may be created by giving a list of qubits as arguments, or a vector of qubits.
+A new register may be created by giving a list of qubits as arguments, or a vector of qubits, or a list of 0s and 1s.
 ```julia
 julia> R = Register(Q1,Q1,Q0);
 
 julia> Qvec = [Q1,Q1,Q0];
 
 julia> S = Register(Qvec);  # holds same data as R
+
+julia> T = Register(1,1,0); # holds same data as R
 ```
 
 Use `length(R)` to determine the number of qubits in the register. Note that the number of 
 complex values in `R`'s vector is `2^n` where `n` is the number of qubits.
 
-More to come (e.g., implement `measure!`).
+The `measure!` function performs a quantum measurement on all the qubits in a register, 
+returning their values as a vector of zeros and ones. After measurement, the qubits
+in the register are reduced to `Q0`s and `Q1`s respectively.
+```julia
+julia> Q = Qubit(3,4im)
+Qubit(0.6 + 0.0im,0.0 + 0.8im)
+
+julia> R = Register(Q,Q,Q);
+
+julia> R == Register(1,1,0)
+false
+
+julia> measure!(R)
+3-element Array{Int64,1}:
+ 1
+ 1
+ 0
+
+julia> R == Register(1,1,0)
+true
+```
+
+**Need to do**: Apply `measure!` to individual qubits. Not sure how.
 
 
 ## Quantum State

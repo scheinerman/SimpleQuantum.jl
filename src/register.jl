@@ -27,7 +27,7 @@ mutable struct Register <: QuantumState
 
     # This constructor generally should not be used the user.
     function Register(v::Vector{T}) where {T<:Number}
-        new(v)
+        new(normalize(v))
     end
 end
 
@@ -59,3 +59,16 @@ end
 is the number of qubits.)
 """
 length(R::Register)::Int = lg(length(R.vec))
+
+"""
+`measure!(R::Register)` returns a vector of 0s and 1s from measuring
+the qubits in `R`. Then `R` is overwritten with `Q0`s and `Q1`s 
+respectively.
+"""
+function measure!(R::Register)::Vector{Int}
+    pv = prob_vector(R)
+    k = random_choice(pv)
+    bits = reverse(digits(k-1,base=2, pad=length(R)))
+    R.vec = Register(Tuple(bits)...).vec
+    return bits
+end

@@ -15,14 +15,18 @@ function _norm(v::Vector)::RR
 end
 
 _norm(q::QuantumState)::RR = _norm(q.vec)
-
+function normalize(v::Vector{T}) where T<:Number
+    return v/_norm(v)
+end
 
 """
 The `normalize!` function is used to ensure that `Qubit`s and `Register`s
 are unit vectors. Not likely to be used by users.
 """
+
+
 function normalize!(q::QuantumState)::Nothing
-    q.vec /= _norm(q)
+    q.vec = normalize(q.vec)
     nothing
 end
 
@@ -39,4 +43,8 @@ function apply!(A::AbstractArray{T,2}, q::QuantumState) where {T}
     q.vec = A * q.vec
     normalize!(q)
     nothing
+end
+
+function prob_vector(q::QuantumState)::Vector{RR}
+    return [z'*z for z in q.vec]
 end
