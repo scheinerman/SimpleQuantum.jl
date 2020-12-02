@@ -96,6 +96,10 @@ true
 **Need to do**: Apply `measure!` to individual qubits. Not sure how.
 
 
+## Gates
+
+Nothing yet.
+
 ## Quantum State
 
 The `QuantumState` type is the common supertype of `Qubit` and `Register`. Both of these
@@ -106,12 +110,26 @@ The function `apply!(A,q)` applies the (presumably unitary) matrix `A`
 to the state vector in `q`, overwriting that vector.
 
 
-## Gates
+## Miscellaneous
 
-Nothing yet.
+### Kronecker product
+We define the operator `⊗` for Kronecker (tensor) product.
+```julia
+julia> [1;2] ⊗ [3;4]
+4-element Array{Int64,1}:
+ 3
+ 4
+ 6
+ 8
+```
 
-
-
+### Base-2 logarithm for powers of two
+We define `lg` as a base-2 logarithm for powers of two. 
+It is faster than `Int(round(log(2,n)))`.
+```julia
+julia> lg(1024)
+10
+```
 
 ## Reference
 

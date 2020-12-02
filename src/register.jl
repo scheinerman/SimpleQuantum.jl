@@ -43,7 +43,7 @@ function Register(Qlist::Qubit...)
     nbits = length(Qlist)
     v = Qlist[1].vec
     for j = 2:nbits
-        v = kron(v, Qlist[j].vec)
+        v = v ⊗ Qlist[j].vec
     end
     return Register(v)
 end

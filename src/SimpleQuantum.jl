@@ -4,7 +4,7 @@ using LinearAlgebra, SparseArrays, SimpleRandom
 import Base: show, ==, length, kron
 
 
-export measure!, (⊗)
+export measure!, (⊗), lg
 
 
 RR = Float64            # shortcut for real
