@@ -17,13 +17,13 @@ mutable struct Register <: QuantumState
         end
         v = zeros(CC, 1 << nbits)
         v[1] = one(CC)
-        new(v,nbits)
+        new(v, nbits)
     end
 
     # This constructor generally should not be used the user.
-    function Register(v::Vector{T}) where T<:Number
-        nbits = Int(round(log(2,length(v))))
-        new(v,nbits)
+    function Register(v::Vector{T}) where {T<:Number}
+        nbits = Int(round(log(2, length(v))))
+        new(v, nbits)
     end
 end
 

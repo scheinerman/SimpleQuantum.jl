@@ -1,6 +1,6 @@
 
 export _norm # eventually, I won't export this
-export QuantumState, normalize!, apply! 
+export QuantumState, normalize!, apply!
 
 """
 `QuantumState` is an abstract supertype of `Qubit`
@@ -35,8 +35,8 @@ end
 by multiplying it by `A`. We assume (but do not check) that `A`
 is a unitary matrix of the appropriate size.
 """
-function apply!(A::AbstractArray{T,2}, q::QuantumState) where T 
-    q.vec = A*q.vec
+function apply!(A::AbstractArray{T,2}, q::QuantumState) where {T}
+    q.vec = A * q.vec
     normalize!(q)
     nothing
 end
