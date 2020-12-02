@@ -1,6 +1,6 @@
 # SimpleQuantum
 
-This is a demonstration project for quantum computation. 
+This is a demonstration project for quantum computation using the quantum circuit model.
 
 
 
@@ -8,13 +8,23 @@ This is a demonstration project for quantum computation.
 
 The basic unit of quantum computation is a *qubit* which is a unit
 vector in $C^2$. The function `Qubit()` returns a new qubit corresponding
-to a zero. 
+to a zero represented by the complex vector $[1+0im; 0+0im]$. 
 
 We provide the constants `Q0` and `Q1` representing zero and one, 
-respectively.
+respectively. The vector representation of `Q1` is `[0+0im;1+0im]`.
 
 More generally, `Qubit(w,z)` where `w` and `z` are numbers (not both zero)
 creates a new qubit whose unit vector representation is `[w;z]` normalized.
+```julia
+julia> using SimpleQuantum
+
+julia> Q0 == Qubit(1,0)
+true
+
+julia> Q1 == Qubit(0,1)
+true
+```
+
 
 The `measure!` function is used to get the collapsed value of the qubit. If `q` is the qubit
 specified by `[w;z]` with `abs(w)^2 + abs(z)^2 == 1`, then `measure!(q)` 
