@@ -98,6 +98,10 @@ true
 
 **Need to do**: Apply `measure!` to individual qubits. Not sure how.
 
+### Register report
+
+Use `report(R)` to print out a list of all possibl states of the register
+`R` and their associated probabilities.
 
 ## Gates
 
@@ -115,7 +119,7 @@ to the state vector in `q`, overwriting that vector.
 
 ## Miscellaneous
 
-### Kronecker product
+#### Kronecker product
 We define the operator `⊗` for Kronecker (tensor) product.
 ```julia
 julia> [1;2] ⊗ [3;4]
@@ -126,7 +130,7 @@ julia> [1;2] ⊗ [3;4]
  8
 ```
 
-### Base-2 logarithm for powers of two
+#### Base-2 logarithm for powers of two
 We define `lg` as the base-2 logarithm for powers of two. 
 It is faster than `Int(round(log(2,n)))`.
 This gives incorrect results if `n` is not a power of two.
