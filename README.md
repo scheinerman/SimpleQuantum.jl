@@ -1,7 +1,6 @@
 # SimpleQuantum
 
-[![Build Status](https://travis-ci.com/scheinerman/SimpleQuantum.jl.svg?branch=master)](https://travis-ci.com/scheinerman/SimpleQuantum.jl)
-
+[![Build Status](https://travis-ci.com/scheinerman/SimpleQuantum.jl.svg?branch=main)](https://travis-ci.com/scheinerman/SimpleQuantum.jl)
 
 This is a demonstration project for quantum computation using the quantum circuit model.
 
