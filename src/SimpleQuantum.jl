@@ -34,7 +34,7 @@ end
 include("quantum_state.jl")
 include("qubit.jl")
 include("register.jl")
-
+include("gate.jl")
 
 
 end  # end of module

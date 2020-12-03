@@ -104,7 +104,10 @@ Use `report(R)` to print out a list of all possibl states of the register
 
 ## Gates
 
-Nothing yet.
+Functions:
+* `add_gate`
+* `gate`
+* `gate_help`
 
 ## Quantum State
 
