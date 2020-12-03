@@ -67,3 +67,6 @@ function RandomQubit()
     b = randn() + randn() * im
     return Qubit(a, b)
 end
+
+
+length(Q::Qubit) = 1

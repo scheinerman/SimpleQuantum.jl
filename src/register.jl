@@ -1,4 +1,4 @@
-export Register
+export Register, report
 import Base: length
 
 """
@@ -71,4 +71,25 @@ function measure!(R::Register)::Vector{Int}
     bits = reverse(digits(k-1,base=2, pad=length(R)))
     R.vec = Register(Tuple(bits)...).vec
     return bits
+end
+
+
+function binary_string(n::Int, bits::Int)
+    dlist = reverse(digits(n,base=2,pad=bits))
+    dd = Tuple(string.(dlist))
+    return *(dd...)
+end
+
+
+"""
+`report(R::Register)` prints a table of the possible register states
+and their probabilities.
+"""
+function report(R::QuantumState)
+    pvec = prob_vector(R)
+    digs = length(R)
+    for k=1:1<<digs
+        println(binary_string(k-1,digs),"\t", pvec[k])
+    end
+    nothing
 end
