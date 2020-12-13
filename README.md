@@ -9,7 +9,7 @@ This is a demonstration project for quantum computation using the quantum circui
 ## Qubits
 
 The basic unit of quantum computation is a *qubit* which is a unit
-vector in $C^2$. The function `Qubit()` returns a new qubit corresponding
+vector in ``C^2``. The function `Qubit()` returns a new qubit corresponding
 to a zero represented by the complex vector `[1+0im; 0+0im]`. 
 
 We provide the constants `Q0` and `Q1` representing zero and one, 
