@@ -118,7 +118,6 @@ that vector.
 The function `apply!(A,q)` applies the (presumably unitary) matrix `A` 
 to the state vector in `q`, overwriting that vector.
 
-
 ## Miscellaneous
 
 #### Kronecker product
