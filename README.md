@@ -110,7 +110,6 @@ Functions:
 * `gate_help`
 
 
-
 ## Quantum State
 
 The `QuantumState` type is the common supertype of `Qubit` and `Register`. Both of these
